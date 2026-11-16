@@ -1,124 +1,77 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import HighlightText from "../components/core/HomePage/HighlightText";
-import CTAButton from "../components/core/HomePage/Button";
 import Banner from "../assets/Images/banner.mp4";
-import elipseImage1 from "../assets/Images/Ellipse 1.png";
-import elipseImage2 from "../assets/Images/Ellipse 2.png";
-import elipseImage3 from "../assets/Images/Ellipse 3.png";
-import CodeBlocks from "../components/core/HomePage/CodeBlocks";
-import "./Home.css";
-import TimelineSection from "../components/core/HomePage/TimelineSection";
-import LearningLanguageSection from "../components/core/HomePage/LearningLanguageSection";
-import InstructorSection from "../components/core/HomePage/InstructorSection";
 import Footer from "../components/common/Footer";
-import ExploreMore from "../components/core/HomePage/ExploreMore";
 import ReviewSlider from "../components/common/ReviewSlider";
+import CTAButton from "../components/core/HomePage/Button";
+import CodeBlocks from "../components/core/HomePage/CodeBlocks";
+import ExploreMore from "../components/core/HomePage/ExploreMore";
+import HighlightText from "../components/core/HomePage/HighlightText";
+import InstructorSection from "../components/core/HomePage/InstructorSection";
+import LearningLanguageSection from "../components/core/HomePage/LearningLanguageSection";
+import TimelineSection from "../components/core/HomePage/TimelineSection";
 
 const Home = () => {
   return (
     <div>
-      {/* SECTION-1 */}
-      <div
-        className="relative mx-auto flex flex-col w-11/12 items-center max-w-maxContent text-white
-                        "
-      >
+      {/* Section 1 */}
+      <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 text-white">
+        {/* Become a Instructor Button */}
         <Link to={"/signup"}>
-          <div
-            className=" group mt-28 p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-200
-            transition-all duration-200 hover:scale-95 w-fit shadow-md shadow-pure-greys-500"
-          >
-            <div
-              className="flex flex-row items-center gap-2 rounded-full px-10 py-[5px]
-                transition-all duration-200 group-hover:bg-richblack-900"
-            >
+          <div className="group mx-auto mt-16 w-fit rounded-full bg-richblack-800 p-1 font-bold text-richblack-200 drop-shadow-[0_1.5px_rgba(255,255,255,0.25)] transition-all duration-200 hover:scale-95 hover:drop-shadow-none">
+            <div className="flex flex-row items-center gap-2 rounded-full px-10 py-[5px] transition-all duration-200 group-hover:bg-richblack-900">
               <p>Become an Instructor</p>
               <FaArrowRight />
             </div>
           </div>
         </Link>
 
-        <div className="text-center text-4xl font-semibold mt-7">
-          Empower Your Future With
+        {/* Heading */}
+        <div className="text-center text-4xl font-semibold">
+          Empower Your Future with
           <HighlightText text={"Coding Skills"} />
         </div>
 
-        <div className=" mt-4 w-[90%] text-center text-lg font-bold text-richblack-300">
+        {/* Sub Heading */}
+        <div className="-mt-3 w-[90%] text-center text-lg font-bold text-richblack-300">
           With our online coding courses, you can learn at your own pace, from
           anywhere in the world, and get access to a wealth of resources,
           including hands-on projects, quizzes, and personalized feedback from
           instructors.
         </div>
 
-        <div className="flex flex-col relative items-center gap-7  mt-32 mb-10">
-          <div className="flex flex-row gap-7 mt-10 absolute lg:z-50 bottom-[100%]">
-            <CTAButton active={true} linkto={"/signup"}>
-              Learn More
-            </CTAButton>
-
-            <CTAButton active={false} linkto={"/login"}>
-              Book a Demo
-            </CTAButton>
-          </div>
-
-          <div className="mx-3 my-12 shadow-blue-200 -z-10s relative vid1">
-            <div>
-              <img
-                src={elipseImage2}
-                width={"100%"}
-                className="absolute bottom-[1%] -z-10 "
-                alt="elipse "
-              />
-              <img
-                src={elipseImage1}
-                width={"100%"}
-                className="absolute right-[12%] top-[2%] -z-10"
-                alt="elipse "
-              />
-            </div>
-            <video muted loop autoPlay>
-              <source src={Banner} type="video/mp4" />
-            </video>
-          </div>
+        {/* CTA Buttons */}
+        <div className="mt-8 flex flex-row gap-7">
+          <CTAButton active={true} linkto={"/signup"}>
+            Learn More
+          </CTAButton>
+          <CTAButton active={false} linkto={"/login"}>
+            Book a Demo
+          </CTAButton>
         </div>
 
-        {/* <div className='flex flex-row gap-7 mt-10'>
-                <CTAButton active={true} linkto={"/signup"}> 
-                    Learn More
-                </CTAButton>
+        {/* Video */}
+        <div className="mx-3 my-7 shadow-[10px_-5px_50px_-5px] shadow-blue-200">
+          <video
+            className="shadow-[20px_20px_rgba(255,255,255)]"
+            muted
+            loop
+            autoPlay
+          >
+            <source src={Banner} type="video/mp4" />
+          </video>
+        </div>
 
-                <CTAButton active={false} linkto={"/login"}> 
-                    Book a Demo
-                </CTAButton>
-            </div>
-
-            <div className='mx-3 my-12 shadow-blue-200 relative vid1'>
-                <div > 
-                    <img src = {elipseImage2} width={"100%"}
-                    className='absolute bottom-[1%] -z-10 ' 
-                     alt='elipse ' />
-                     <img src = {elipseImage1} width={"100%"}
-                    className='absolute right-[12%] top-[2%] -z-10'
-                     alt='elipse ' />
-                    
-                </div>
-                <video muted loop autoPlay >
-                    <source  src={Banner} type="video/mp4" />
-                </video> 
-                
-            </div> */}
-
-        {/* CODE-SECTION-1 */}
+        {/* Code Section 1 */}
         <div>
           <CodeBlocks
             position={"lg:flex-row"}
-            // imgPos = {"-top-[40%] right-[8%]"}
             heading={
               <div className="text-4xl font-semibold">
-                Unlock Your
+                Unlock your
                 <HighlightText text={"coding potential"} /> with our online
-                courses
+                courses.
               </div>
             }
             subheading={
@@ -126,37 +79,28 @@ const Home = () => {
             }
             ctabtn1={{
               btnText: "Try it Yourself",
-              linkto: "/signup",
+              link: "/signup",
               active: true,
             }}
             ctabtn2={{
               btnText: "Learn More",
-              linkto: "/login",
+              link: "/signup",
               active: false,
             }}
-            // codeblock={`<<!DOCTYPE html>\n<html>\nhead><title>Example</title><linkrel="stylesheet"href="styles.css">\n/head>\nbody>\nh1><ahref="/">Header</a>\n/h1>\nnav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a>\n/nav>`}
-            codeblock={[
-              `<!DOCTYPE html>`,
-              `<html>\nhead><title>Example</title><linkrel="stylesheet"href="styles.css">\n/head>\nbody>`,
-              `h1><ahref="/">Header</a>\n/h1>\nnav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a>\n/nav>`,
-            ]}
             codeColor={"text-yellow-25"}
-            // backgroudGradient={elipseImage3}
-            backgroudGradient={<div className="codeblock1 absolute"></div>}
+            codeblock={`<!DOCTYPE html>\n <html lang="en">\n<head>\n<title>This is myPage</title>\n</head>\n<body>\n<h1><a href="/">Header</a></h1>\n<nav> <a href="/one">One</a> <a href="/two">Two</a> <a href="/three">Three</a>\n</nav>\n</body>`}
+            backgroundGradient={<div className="codeblock1 absolute"></div>}
           />
         </div>
 
-        {/* CODE-SECTION-2 */}
+        {/* Code Section 2 */}
         <div>
           <CodeBlocks
             position={"lg:flex-row-reverse"}
-            // imgPos = {"-top-[40%] right-[66%]"}
             heading={
-              <div className="text-4xl font-semibold">
+              <div className="w-[100%] text-4xl font-semibold lg:w-[50%]">
                 Start
-                <HighlightText text={`coding`} />
-                <br />
-                <HighlightText text={` in seconds`} />
+                <HighlightText text={"coding in seconds"} />
               </div>
             }
             subheading={
@@ -164,25 +108,21 @@ const Home = () => {
             }
             ctabtn1={{
               btnText: "Continue Lesson",
-              linkto: "/signup",
+              link: "/signup",
               active: true,
             }}
             ctabtn2={{
-              btnText: "learn more",
-              linkto: "/login",
+              btnText: "Learn More",
+              link: "/signup",
               active: false,
             }}
-            codeblock={[
-              `<!DOCTYPE html>`,
-              `<html>\nhead><title>Example</title><linkrel="stylesheet"href="styles.css">\n/head>\nbody>`,
-              `h1><ahref="/">Header</a>\n/h1>\nnav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a>\n/nav>`,
-            ]}
-            codeColor={"text-yellow-25"}
-            // backgroudGradient={elipseImage2}
-            backgroudGradient={<div className="codeblock2 absolute"></div>}
+            codeColor={"text-white"}
+            codeblock={`import React from "react";\n import CTAButton from "./Button";\nimport TypeAnimation from "react-type";\nimport { FaArrowRight } from "react-icons/fa";\n\nconst Home = () => {\nreturn (\n<div>Home</div>\n)\n}\nexport default Home;`}
+            backgroundGradient={<div className="codeblock2 absolute"></div>}
           />
         </div>
 
+        {/* Explore Section */}
         <ExploreMore />
       </div>
 
@@ -245,7 +185,7 @@ const Home = () => {
         <ReviewSlider />
       </div>
 
-      {/* FOOTER */}
+      {/* Footer */}
       <Footer />
     </div>
   );
