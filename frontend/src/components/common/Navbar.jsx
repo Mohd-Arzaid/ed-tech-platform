@@ -49,9 +49,8 @@ function Navbar() {
     return matchPath({ path: route }, location.pathname)
   }
 
-  const handleCrossButton = () => { 
-    isClose = isClose ? setIsClose(false) : setIsClose(true);  
-    // smallScreen = smallScreen ? setSmallScreen(false) : setSmallScreen(true);
+  const handleCrossButton = () => {
+    setIsClose((prev) => !prev)
   }
   
 
@@ -187,17 +186,14 @@ function Navbar() {
         (
           <button className="mr-4 md:hidden"
           onClick={handleCrossButton}>
-            <ImCross fontSize={24} fill="#AFB2BF" />
+            <ImCross fontSize={16} fill="#AFB2BF" />
           </button>
         )
       }
-      {
-        isClose && <SmallScreenNavbar 
-                      isClose={isClose}
-                      // setIsClose={setIsClose}
-                      handleCrossButton={handleCrossButton} />
-      }
     </div>
+    {isClose && (
+      <SmallScreenNavbar handleCrossButton={handleCrossButton} />
+    )}
     </div>
 
   )
