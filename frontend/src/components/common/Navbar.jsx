@@ -43,6 +43,44 @@ function Navbar() {
     })()
   }, [])
 
+  // Pin page scroll while mobile menu is open (overflow:hidden alone fails on many mobile browsers)
+  useEffect(() => {
+    if (!isClose) return
+
+    const scrollY = window.scrollY
+    const { body } = document
+    const previous = {
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      overflow: body.style.overflow,
+      width: body.style.width,
+    }
+
+    body.style.position = "fixed"
+    body.style.top = `-${scrollY}px`
+    body.style.left = "0"
+    body.style.right = "0"
+    body.style.width = "100%"
+    body.style.overflow = "hidden"
+
+    return () => {
+      body.style.position = previous.position
+      body.style.top = previous.top
+      body.style.left = previous.left
+      body.style.right = previous.right
+      body.style.width = previous.width
+      body.style.overflow = previous.overflow
+      window.scrollTo(0, scrollY)
+    }
+  }, [isClose])
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsClose(false)
+  }, [location.pathname])
+
   // console.log("sub links", subLinks)
 
   const matchRoute = (route) => {
@@ -52,26 +90,28 @@ function Navbar() {
   const handleCrossButton = () => {
     setIsClose((prev) => !prev)
   }
-  
+
+  const navBg =
+    location.pathname === "/about"
+      ? "bg-richblack-700"
+      : location.pathname !== "/"
+        ? "bg-richblack-800"
+        : "bg-richblack-900"
+
+  // Menu open => always pin; other pages stay fixed; home stays in-flow until menu opens
+  const pinNavbar = isClose || location.pathname !== "/"
 
   return (
+    <>
     <div
     className={`flex h-14 items-center justify-center border-b-[1px]
-      border-b-richblack-700
-       ${ location.pathname !== "/" ? "bg-richblack-800" : "" }
-        ${ location.pathname === "/about" ?
-        "fixed w-screen z-[1000]  bg-richblack-700" : "" }  
-        ${
-      location.pathname === "/contact" || matchRoute("/catalog/:catalogName")
-                                      ||  matchRoute("/courses/:couseId") ?
-            "fixed w-screen z-[1000]  bg-richblack-800" : "" }
+      border-b-richblack-700 w-full z-[1100] ${navBg}
+      ${pinNavbar ? "fixed top-0 left-0 right-0" : "relative"}
          transition-all duration-200 `}
   >
-    <div className= {`flex ${
-      location.pathname === "/" ? "relative" : "fixed"
-      } ${
+    <div className= {`flex relative ${
       location.pathname !== "/" ? "bg-richblack-800" : "bg-richblack-900"
-      } z-40 lg:relative w-11/12 max-w-maxContent items-center justify-between`}>
+      } w-11/12 max-w-maxContent items-center justify-between`}>
       {/* Logo */}
       <Link to="/">
         <img src={logo} alt="Logo" width={160} height={32} loading="lazy" />
@@ -195,7 +235,7 @@ function Navbar() {
       <SmallScreenNavbar handleCrossButton={handleCrossButton} />
     )}
     </div>
-
+    </>
   )
 }
 

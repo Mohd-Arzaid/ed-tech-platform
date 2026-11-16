@@ -49,17 +49,17 @@ export default function SmallScreenNavbar({ handleCrossButton }) {
 
   return (
     <>
-      {/* Backdrop */}
+      {/* Backdrop — below sticky navbar */}
       <button
         type="button"
         aria-label="Close menu"
-        className="fixed inset-0 top-14 z-[999] bg-black/50 md:hidden"
+        className="fixed inset-0 top-14 z-[1080] bg-black/50 md:hidden"
         onClick={handleCrossButton}
       />
 
-      {/* Drawer */}
+      {/* Drawer stays under sticky navbar while page scroll is locked */}
       <div
-        className={`fixed right-0 top-14 z-[1000] flex h-[calc(100vh-3.5rem)] w-full max-w-xs flex-col overflow-y-auto border-l border-richblack-700 px-5 py-6 md:hidden ${
+        className={`fixed right-0 top-14 z-[1090] flex h-[calc(100vh-3.5rem)] w-full max-w-xs flex-col overflow-y-auto border-l border-richblack-700 px-5 py-6 md:hidden ${
           location.pathname !== "/" ? "bg-richblack-800" : "bg-richblack-900"
         }`}
       >
