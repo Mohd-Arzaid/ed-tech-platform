@@ -107,17 +107,19 @@ function Catalog() {
           />
         </div>
       </div>
-      {/* Section 2 */}
-      <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
-        <div className="section_heading">
-          Top courses in {catalogPageData?.data?.differentCategory?.name}
+      {/* Section 2 — only when another category exists */}
+      {catalogPageData?.data?.differentCategory && (
+        <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
+          <div className="section_heading">
+            Top courses in {catalogPageData?.data?.differentCategory?.name}
+          </div>
+          <div className="py-8">
+            <Course_Slider
+              Courses={catalogPageData?.data?.differentCategory?.courses}
+            />
+          </div>
         </div>
-        <div className="py-8">
-          <Course_Slider
-            Courses={catalogPageData?.data?.differentCategory?.courses}
-          />
-        </div>
-      </div>
+      )}
 
       {/* Section 3 */}
       <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">

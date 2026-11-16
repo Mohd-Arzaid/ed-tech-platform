@@ -77,20 +77,22 @@ exports.categoryPageDetails = async (req, res) => {
         })
       }
   
-      // Get courses for other categories
+      // Get courses for other categories (skip when only one category exists)
       const categoriesExceptSelected = await Category.find({
         _id: { $ne: categoryId },
       })
-      let differentCategory = await Category.findOne(
-        categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
-          ._id
-      )
-        .populate({
-          path: "courses",
-          match: { status: "Published" },
-        })
-        .exec()
-        //console.log("Different COURSE", differentCategory)
+      let differentCategory = null
+      if (categoriesExceptSelected.length > 0) {
+        differentCategory = await Category.findOne(
+          categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
+            ._id
+        )
+          .populate({
+            path: "courses",
+            match: { status: "Published" },
+          })
+          .exec()
+      }
       // Get top-selling courses across all categories
       const allCategories = await Category.find()
         .populate({
