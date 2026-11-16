@@ -91,27 +91,19 @@ function Navbar() {
     setIsClose((prev) => !prev)
   }
 
-  const navBg =
-    location.pathname === "/about"
-      ? "bg-richblack-700"
-      : location.pathname !== "/"
-        ? "bg-richblack-800"
-        : "bg-richblack-900"
-
-  // Menu open => always pin; other pages stay fixed; home stays in-flow until menu opens
-  const pinNavbar = isClose || location.pathname !== "/"
+  // Match AnishAwadh: navbar stays in document flow. Only pin while mobile menu is open.
+  const navBg = location.pathname !== "/" ? "bg-richblack-800" : "bg-richblack-900"
 
   return (
     <>
+    {isClose && <div className="h-14" aria-hidden />}
     <div
     className={`flex h-14 items-center justify-center border-b-[1px]
       border-b-richblack-700 w-full z-[1100] ${navBg}
-      ${pinNavbar ? "fixed top-0 left-0 right-0" : "relative"}
+      ${isClose ? "fixed top-0 left-0 right-0" : "relative"}
          transition-all duration-200 `}
   >
-    <div className= {`flex relative ${
-      location.pathname !== "/" ? "bg-richblack-800" : "bg-richblack-900"
-      } w-11/12 max-w-maxContent items-center justify-between`}>
+    <div className="flex relative w-11/12 max-w-maxContent items-center justify-between">
       {/* Logo */}
       <Link to="/">
         <img src={logo} alt="Logo" width={160} height={32} loading="lazy" />
